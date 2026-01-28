@@ -1250,20 +1250,23 @@
         // Sound Toggle Functionality
         function toggleSound() {
             if (isMusicPlaying) {
+                // Music is playing, pause it
                 backgroundMusic.pause();
                 soundToggle.textContent = '🔇';
                 soundToggle.classList.add('muted');
                 isMusicPlaying = false;
             } else {
+                // Music is not playing, try to play it
                 backgroundMusic.play().then(() => {
                     soundToggle.textContent = '🔊';
                     soundToggle.classList.remove('muted');
                     isMusicPlaying = true;
                 }).catch(e => {
                     console.log('Audio play failed:', e);
-                    // If autoplay is blocked, show muted state
-                    soundToggle.textContent = '🔇';
-                    soundToggle.classList.add('muted');
+                    // If play fails, keep it as 🔊 and let user try again
+                    soundToggle.textContent = '🔊';
+                    soundToggle.classList.remove('muted');
+                    isMusicPlaying = false;
                 });
             }
         }
@@ -1278,9 +1281,10 @@
                     soundToggle.classList.remove('muted');
                     isMusicPlaying = true;
                 }).catch(e => {
-                    // Autoplay was blocked
-                    soundToggle.textContent = '🔇';
-                    soundToggle.classList.add('muted');
+                    // Autoplay was blocked - keep button as 🔊 (not muted)
+                    // User can click to play manually
+                    soundToggle.textContent = '🔊';
+                    soundToggle.classList.remove('muted');
                     isMusicPlaying = false;
                 });
             } else {
@@ -1291,8 +1295,9 @@
                         soundToggle.classList.remove('muted');
                         isMusicPlaying = true;
                     }).catch(e => {
-                        soundToggle.textContent = '🔇';
-                        soundToggle.classList.add('muted');
+                        // Autoplay was blocked - keep button as 🔊 (not muted)
+                        soundToggle.textContent = '🔊';
+                        soundToggle.classList.remove('muted');
                         isMusicPlaying = false;
                     });
                 }, { once: true });
