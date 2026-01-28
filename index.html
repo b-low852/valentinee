@@ -425,7 +425,7 @@
                 45deg,
                 rgba(255, 182, 193, 0.1) 0%,
                 rgba(255, 192, 203, 0.1) 25%,
-                rgba(255, 215, 0, 0.1) 50%,
+                rgba(255, 255, 255, 0.15) 50%,
                 rgba(255, 192, 203, 0.1) 75%,
                 rgba(255, 182, 193, 0.1) 100%
             );
@@ -449,6 +449,52 @@
 
         .celebration.show {
             display: flex !important;
+        }
+
+        /* Card view - shows card.gif first after Yes */
+        .celebration-card-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            cursor: pointer;
+            width: 100%;
+            min-height: 100%;
+            box-sizing: border-box;
+        }
+
+        .celebration-card-view.hidden {
+            display: none !important;
+        }
+
+        .celebration-letter-view {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        .celebration-letter-view.show {
+            display: flex !important;
+        }
+
+        .celebration-card-gif {
+            max-width: 90%;
+            max-height: 70vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            animation: bounceIn 1s ease;
+        }
+
+        .card-view-hint {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         body.celebration-active,
@@ -561,11 +607,11 @@
             font-size: 4em;
             font-weight: 600;
             margin-bottom: 30px;
-            color: #ffd700;
-            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.5);
+            color: #ffffff;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
             letter-spacing: 2px;
             line-height: 1.2;
-            animation: fadeIn 1s ease-in;
+            animation: pulseGlow 2s ease-in-out infinite, shimmerText 3s ease-in-out infinite;
             position: relative;
         }
 
@@ -587,11 +633,11 @@
         @keyframes pulseGlow {
             0%, 100% {
                 transform: scale(1);
-                text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.3);
+                text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
             }
             50% {
                 transform: scale(1.05);
-                text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 215, 0, 0.6), 0 0 70px rgba(255, 215, 0, 0.4);
+                text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 50px rgba(255, 255, 255, 0.6), 0 0 70px rgba(255, 255, 255, 0.4);
             }
         }
 
@@ -605,7 +651,14 @@
         }
 
         .celebration-content h2::before {
-            display: none;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 3s infinite;
         }
 
         @keyframes shimmer {
@@ -624,12 +677,12 @@
             margin-bottom: 15px;
             letter-spacing: 1px;
             line-height: 1.6;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.3);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.5);
             max-width: 90%;
             margin-left: auto;
             margin-right: auto;
             opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
+            animation: fadeInUp 0.8s ease forwards, textGlow 3s ease-in-out infinite;
             position: relative;
         }
 
@@ -677,10 +730,10 @@
 
         @keyframes textGlow {
             0%, 100% {
-                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.3);
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.5);
             }
             50% {
-                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.6), 0 0 35px rgba(255, 215, 0, 0.4);
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.7), 0 0 35px rgba(255, 255, 255, 0.5);
             }
         }
 
@@ -688,7 +741,7 @@
             position: absolute;
             width: 10px;
             height: 10px;
-            background: #ffd700;
+            background: #ffffff;
             border-radius: 50%;
             animation: sparkle 1s ease-in-out infinite;
         }
@@ -828,7 +881,7 @@
         .game-header h2 {
             font-size: 3em;
             margin-bottom: 10px;
-            color: #ffd700;
+            color: #ffffff;
         }
 
         .game-stats {
@@ -939,7 +992,7 @@
             border-radius: 20px;
             margin: 20px auto;
             display: block;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 255, 255, 0.4);
             animation: fadeIn 1s ease-in, videoGlow 3s ease-in-out infinite;
         }
 
@@ -961,10 +1014,10 @@
 
         @keyframes videoGlow {
             0%, 100% {
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.3);
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 255, 255, 0.4);
             }
             50% {
-                box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.6), 0 0 100px rgba(255, 215, 0, 0.4);
+                box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 80px rgba(255, 255, 255, 0.6), 0 0 100px rgba(255, 255, 255, 0.4);
             }
         }
 
@@ -972,8 +1025,8 @@
             margin-top: 20px;
             padding: 15px 40px;
             font-size: 1.2em;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 50%, #ffb6d9 100%);
+            color: #8b4562;
             border: none;
             border-radius: 50px;
             cursor: pointer;
@@ -982,7 +1035,7 @@
             position: relative;
             overflow: hidden;
             animation: buttonPulse 2s ease-in-out infinite, buttonShine 3s ease-in-out infinite;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4), 0 0 30px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 5px 20px rgba(255, 182, 193, 0.5), 0 0 30px rgba(255, 192, 203, 0.3);
             touch-action: manipulation;
         }
 
@@ -1007,11 +1060,11 @@
         @keyframes buttonPulse {
             0%, 100% {
                 transform: scale(1);
-                box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4), 0 0 30px rgba(102, 126, 234, 0.2);
+                box-shadow: 0 5px 20px rgba(255, 182, 193, 0.5), 0 0 30px rgba(255, 192, 203, 0.3);
             }
             50% {
                 transform: scale(1.05);
-                box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6), 0 0 50px rgba(102, 126, 234, 0.4);
+                box-shadow: 0 8px 30px rgba(255, 182, 193, 0.6), 0 0 50px rgba(255, 192, 203, 0.4);
             }
         }
 
@@ -1046,7 +1099,7 @@
 
         .restart-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 35px rgba(102, 126, 234, 0.6), 0 0 60px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 35px rgba(255, 182, 193, 0.6), 0 0 60px rgba(255, 192, 203, 0.4);
         }
 
         /* Celebration sparkles */
@@ -1054,11 +1107,11 @@
             position: absolute;
             width: 8px;
             height: 8px;
-            background: #ffd700;
+            background: #ffffff;
             border-radius: 50%;
             pointer-events: none;
             z-index: 1001;
-            box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.8), 0 0 20px 4px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.9), 0 0 20px 4px rgba(255, 255, 255, 0.5);
             animation: celebrationSparkle 2s ease-in-out infinite;
         }
 
@@ -1224,13 +1277,19 @@
     </div>
 
     <div class="celebration" id="celebration">
-        <div class="celebration-content">
-            <img src="v2.gif" alt="Celebration GIF" class="celebration-gif">
-            <h2>Yay!</h2>
-            <p>You made my day and I am so incredibly happy that you said yes!</p>
-            <p>I cannot wait to spend this special Valentine's Day with you and create beautiful memories together!</p>
-            <p>Thank you for making this the most wonderful day of my life!</p>
-            <button class="restart-btn" onclick="startGame()" style="margin-top: 30px;">Play Memory Game</button>
+        <div class="celebration-card-view" id="celebrationCardView">
+            <img src="card.gif" alt="Valentine Card" class="celebration-card-gif">
+            <p class="card-view-hint">Click anywhere to read your letter 💕</p>
+        </div>
+        <div class="celebration-letter-view" id="celebrationLetterView">
+            <div class="celebration-content">
+                <img src="v2.gif" alt="Celebration GIF" class="celebration-gif">
+                <h2>Yay!</h2>
+                <p>You made my day and I am so incredibly happy that you said yes!</p>
+                <p>I cannot wait to spend this special Valentine's Day with you and create beautiful memories together!</p>
+                <p>Thank you for making this the most wonderful day of my life!</p>
+                <button class="restart-btn" onclick="startGame()" style="margin-top: 30px;">Play Memory Game</button>
+            </div>
         </div>
     </div>
 
@@ -1250,23 +1309,20 @@
         // Sound Toggle Functionality
         function toggleSound() {
             if (isMusicPlaying) {
-                // Music is playing, pause it
                 backgroundMusic.pause();
                 soundToggle.textContent = '🔇';
                 soundToggle.classList.add('muted');
                 isMusicPlaying = false;
             } else {
-                // Music is not playing, try to play it
                 backgroundMusic.play().then(() => {
                     soundToggle.textContent = '🔊';
                     soundToggle.classList.remove('muted');
                     isMusicPlaying = true;
                 }).catch(e => {
                     console.log('Audio play failed:', e);
-                    // If play fails, keep it as 🔊 and let user try again
-                    soundToggle.textContent = '🔊';
-                    soundToggle.classList.remove('muted');
-                    isMusicPlaying = false;
+                    // If autoplay is blocked, show muted state
+                    soundToggle.textContent = '🔇';
+                    soundToggle.classList.add('muted');
                 });
             }
         }
@@ -1281,10 +1337,9 @@
                     soundToggle.classList.remove('muted');
                     isMusicPlaying = true;
                 }).catch(e => {
-                    // Autoplay was blocked - keep button as 🔊 (not muted)
-                    // User can click to play manually
-                    soundToggle.textContent = '🔊';
-                    soundToggle.classList.remove('muted');
+                    // Autoplay was blocked
+                    soundToggle.textContent = '🔇';
+                    soundToggle.classList.add('muted');
                     isMusicPlaying = false;
                 });
             } else {
@@ -1295,9 +1350,8 @@
                         soundToggle.classList.remove('muted');
                         isMusicPlaying = true;
                     }).catch(e => {
-                        // Autoplay was blocked - keep button as 🔊 (not muted)
-                        soundToggle.textContent = '🔊';
-                        soundToggle.classList.remove('muted');
+                        soundToggle.textContent = '🔇';
+                        soundToggle.classList.add('muted');
                         isMusicPlaying = false;
                     });
                 }, { once: true });
@@ -1569,28 +1623,41 @@
         function startGame() {
             document.body.classList.remove('celebration-active');
             celebration.classList.remove('show');
-            
-            // Clear celebration sparkles
-            if (celebrationSparkleInterval) {
-                clearInterval(celebrationSparkleInterval);
-                celebrationSparkleInterval = null;
-            }
-            
+            celebrationCardView.classList.remove('hidden');
+            celebrationLetterView.classList.remove('show');
             document.body.classList.add('game-active');
             document.getElementById('gameContainer').classList.add('show');
             initializeGame();
         }
 
-        // Yes button click
+        const celebrationCardView = document.getElementById('celebrationCardView');
+        const celebrationLetterView = document.getElementById('celebrationLetterView');
+
+        function showLoveLetter() {
+            celebrationCardView.classList.add('hidden');
+            celebrationLetterView.classList.add('show');
+        }
+
+        // Yes button click - show card.gif first, then love letter
         yesBtn.addEventListener('click', function() {
             document.body.classList.add('celebration-active');
             celebration.classList.add('show');
+            celebrationCardView.classList.remove('hidden');
+            celebrationLetterView.classList.remove('show');
             createSparkles();
             
             // Play celebration animation
             setTimeout(() => {
                 yesBtn.style.transform = 'scale(1.2)';
             }, 100);
+
+            // Show love letter after 5 seconds, or on click
+            const letterTimeout = setTimeout(showLoveLetter, 5000);
+            celebrationCardView.onclick = function() {
+                clearTimeout(letterTimeout);
+                showLoveLetter();
+                celebrationCardView.onclick = null;
+            };
         });
 
         // No button click - make Yes button bigger and change No button text
@@ -1621,11 +1688,8 @@
 
         // Create sparkles for celebration
         function createSparkles() {
-            // Reduce sparkles on mobile for better performance
-            const sparkleCount = isMobile ? 50 : 100;
-            
             // Create initial burst of sparkles
-            for (let i = 0; i < sparkleCount; i++) {
+            for (let i = 0; i < 100; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
                 sparkle.style.left = Math.random() * 100 + '%';
@@ -1635,9 +1699,7 @@
                 celebration.appendChild(sparkle);
                 
                 setTimeout(() => {
-                    if (sparkle.parentNode) {
-                        sparkle.remove();
-                    }
+                    sparkle.remove();
                 }, 3000);
             }
             
@@ -1646,25 +1708,14 @@
         }
 
         // Create continuous sparkles around celebration content
-        let celebrationSparkleInterval = null;
         function createCelebrationSparkles() {
-            // Clear any existing interval
-            if (celebrationSparkleInterval) {
-                clearInterval(celebrationSparkleInterval);
-            }
-            
-            // Reduce frequency and count on mobile
-            const intervalTime = isMobile ? 600 : 300;
-            const sparkleCount = isMobile ? 3 : 5;
-            
-            celebrationSparkleInterval = setInterval(() => {
+            const interval = setInterval(() => {
                 if (!celebration.classList.contains('show')) {
-                    clearInterval(celebrationSparkleInterval);
-                    celebrationSparkleInterval = null;
+                    clearInterval(interval);
                     return;
                 }
                 
-                for (let i = 0; i < sparkleCount; i++) {
+                for (let i = 0; i < 5; i++) {
                     const sparkle = document.createElement('div');
                     sparkle.className = 'celebration-sparkle';
                     
@@ -1687,12 +1738,10 @@
                     celebration.appendChild(sparkle);
                     
                     setTimeout(() => {
-                        if (sparkle.parentNode) {
-                            sparkle.remove();
-                        }
+                        sparkle.remove();
                     }, 3000);
                 }
-            }, intervalTime);
+            }, 300);
         }
     </script>
 </body>
