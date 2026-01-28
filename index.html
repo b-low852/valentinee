@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 30%, #ffb6d9 60%, #ffc0e1 100%);
+            background-size: 400% 400%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            animation: gradientMove 15s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Animated background images */
+        .bg-image {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes moveImage {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translate(100px, -100px) rotate(90deg) scale(1.2);
+            }
+            50% {
+                transform: translate(-80px, 80px) rotate(180deg) scale(0.8);
+            }
+            75% {
+                transform: translate(120px, 100px) rotate(270deg) scale(1.1);
+            }
+        }
+
+        @keyframes moveImageReverse {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translate(-100px, 100px) rotate(-90deg) scale(1.2);
+            }
+            50% {
+                transform: translate(80px, -80px) rotate(-180deg) scale(0.8);
+            }
+            75% {
+                transform: translate(-120px, -100px) rotate(-270deg) scale(1.1);
+            }
+        }
+
+        /* Sparkle/shine effects */
+        .sparkle-bg {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+            box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.8),
+                        0 0 12px 4px rgba(255, 255, 255, 0.6);
+            animation: sparkleTwinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkleTwinkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+        }
+
+        /* Shimmer effect overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            animation: shimmer 3s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .container {
+            text-align: center;
+            padding: 60px 40px;
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title-gif {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5em;
+            font-weight: 600;
+            color: #e91e63;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            letter-spacing: 2px;
+        }
+
+        .chain-text {
+            display: inline-block;
+        }
+
+        .chain-text span {
+            display: inline-block;
+            opacity: 0;
+            animation: chainReveal 0.1s forwards;
+        }
+
+        @keyframes chainReveal {
+            from {
+                opacity: 0;
+                transform: translateY(20px) rotateX(90deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        .question {
+            font-size: 1.5em;
+            color: white;
+            margin-bottom: 40px;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 20px 50px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform-origin: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-yes:hover {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-yes.growing {
+            animation: growButton 0.5s ease forwards;
+        }
+
+        @keyframes growButton {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(var(--scale, 1.2));
+            }
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .btn-no:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-no:active {
+            transform: translateY(0);
+        }
+
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            min-width: 100vw;
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+            overflow: hidden;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            margin: 0;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .celebration::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        .celebration::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(255, 182, 193, 0.1) 0%,
+                rgba(255, 192, 203, 0.1) 25%,
+                rgba(255, 215, 0, 0.1) 50%,
+                rgba(255, 192, 203, 0.1) 75%,
+                rgba(255, 182, 193, 0.1) 100%
+            );
+            background-size: 400% 400%;
+            animation: rainbowShimmer 8s ease infinite;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes rainbowShimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .celebration.show {
+            display: flex !important;
+        }
+
+        body.celebration-active,
+        body.game-active {
+            overflow: hidden !important;
+        }
+
+        /* Hide scrollbars */
+        .celebration::-webkit-scrollbar,
+        .game-container::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        .celebration,
+        .game-container,
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body.celebration-active .container,
+        body.game-active .container {
+            display: none;
+        }
+
+        .celebration-content {
+            text-align: center;
+            color: white;
+            animation: bounceIn 1s ease;
+            max-width: 900px;
+            max-height: calc(100vh - 80px);
+            padding: 40px;
+            position: relative;
+            z-index: 1002;
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .celebration-content::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .celebration-gif {
+            max-width: 200px;
+            height: auto;
+            margin: 20px;
+            display: inline-block;
+            animation: fadeIn 1s ease-in, floatGif 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes floatGif {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+        }
+
+        .celebration-content h2 {
+            font-size: 4em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #ffd700;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.5);
+            letter-spacing: 2px;
+            line-height: 1.2;
+            animation: pulseGlow 2s ease-in-out infinite, shimmerText 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 215, 0, 0.6), 0 0 70px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        @keyframes shimmerText {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .celebration-content h2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .celebration-content p {
+            font-size: 1.8em;
+            font-weight: 400;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            line-height: 1.6;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.3);
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards, textGlow 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .celebration-content p:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .celebration-content p:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .celebration-content p:nth-child(5) {
+            animation-delay: 0.9s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes textGlow {
+            0%, 100% {
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.6), 0 0 35px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkle 1s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-10px);
+            }
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        /* Sound Control Button */
+        .sound-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: all 0.3s ease;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .sound-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .sound-toggle.muted {
+            opacity: 0.6;
+        }
+
+        .sound-toggle.muted::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background: white;
+            transform: rotate(45deg);
+        }
+
+        @media (max-width: 600px) {
+            .sound-toggle {
+                width: 45px;
+                height: 45px;
+                top: 15px;
+                right: 15px;
+                font-size: 20px;
+            }
+        }
+
+        /* Card Matching Game */
+        .game-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            min-width: 100vw;
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        .game-container.show {
+            display: flex;
+        }
+
+        .game-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .game-header h2 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .game-stats {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 120px);
+            gap: 15px;
+            justify-content: center;
+            max-width: 600px;
+        }
+
+        .card {
+            width: 120px;
+            height: 120px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card.matched .card-inner {
+            transform: rotateY(180deg);
+            opacity: 0.7;
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 100%);
+            color: #e91e63;
+            transform: rotateY(180deg);
+        }
+
+        .game-complete {
+            display: none;
+            text-align: center;
+            color: white;
+            animation: bounceIn 1s ease;
+            position: relative;
+            z-index: 1003;
+        }
+
+        .game-complete.show {
+            display: block;
+        }
+
+
+        .celebration-video {
+            max-width: 600px;
+            width: 90%;
+            height: auto;
+            border-radius: 20px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.3);
+            animation: fadeIn 1s ease-in, videoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes videoGlow {
+            0%, 100% {
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.6), 0 0 100px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        .restart-btn {
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: buttonPulse 2s ease-in-out infinite, buttonShine 3s ease-in-out infinite;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4), 0 0 30px rgba(102, 126, 234, 0.2);
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4), 0 0 30px rgba(102, 126, 234, 0.2);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6), 0 0 50px rgba(102, 126, 234, 0.4);
+            }
+        }
+
+        @keyframes buttonShine {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .restart-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: buttonShimmer 3s infinite;
+        }
+
+        @keyframes buttonShimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .restart-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 35px rgba(102, 126, 234, 0.6), 0 0 60px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Celebration sparkles */
+        .celebration-sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1001;
+            box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.8), 0 0 20px 4px rgba(255, 215, 0, 0.4);
+            animation: celebrationSparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes celebrationSparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+        }
+
+        /* Rotating sparkles around GIF */
+        .celebration-gif::before,
+        .celebration-gif::after {
+            content: '✨';
+            position: absolute;
+            font-size: 2em;
+            animation: rotateAround 4s linear infinite;
+            pointer-events: none;
+        }
+
+        .celebration-gif::before {
+            top: -30px;
+            left: 50%;
+            transform-origin: 0 80px;
+        }
+
+        .celebration-gif::after {
+            bottom: -30px;
+            right: 50%;
+            transform-origin: 0 -80px;
+            animation-duration: 4s;
+            animation-direction: reverse;
+        }
+
+        @keyframes rotateAround {
+            from {
+                transform: rotate(0deg) translateX(80px) rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg) translateX(80px) rotate(-360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .question {
+                font-size: 1.2em;
+            }
+            
+            .btn {
+                padding: 15px 35px;
+                font-size: 1.1em;
+            }
+            
+            .celebration-content h2 {
+                font-size: 4em;
+            }
+            
+            .celebration-content p {
+                font-size: 2em;
+            }
+            
+            .card-grid {
+                grid-template-columns: repeat(4, 80px);
+                gap: 10px;
+            }
+            
+            .card {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .card-front,
+            .card-back {
+                font-size: 2em;
+            }
+            
+            .game-header h2 {
+                font-size: 2em;
+            }
+            
+            .game-stats {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="folded.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Sound Toggle Button -->
+    <button class="sound-toggle" id="soundToggle" title="Toggle Sound">
+        🔊
+    </button>
+
+    <!-- Background images container -->
+    <div id="bg-images-container"></div>
+    
+    <!-- Sparkles container -->
+    <div id="sparkles-container"></div>
+
+    <div class="container">
+        <img src="v3.gif" alt="Valentine GIF" class="title-gif">
+        <h1 class="chain-text" id="chainTitle"></h1>
+        <p class="question">I have a question for you...</p>
+        
+        <div class="button-container">
+            <button class="btn btn-yes" id="yesBtn">Yes!</button>
+            <button class="btn btn-no" id="noBtn">No</button>
+        </div>
+    </div>
+
+    <div class="game-container" id="gameContainer">
+        <div class="game-header">
+            <h2>Memory Game</h2>
+            <div class="game-stats">
+                <span>Moves: <span id="moveCount">0</span></span> | 
+                <span>Matches: <span id="matchCount">0</span>/8</span>
+            </div>
+        </div>
+        <div class="card-grid" id="cardGrid"></div>
+        <div class="game-complete" id="gameComplete">
+            <video id="catVideo" class="celebration-video" autoplay muted loop playsinline>
+                <source src="cat.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h2>Congrat!</h2>
+            <p>You complete the game!</p>
+            <button class="restart-btn" onclick="restartGame()">Play Again</button>
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration">
+        <div class="celebration-content">
+            <img src="v2.gif" alt="Celebration GIF" class="celebration-gif">
+            <h2>Yay!</h2>
+            <p>You made my day and I am so incredibly happy that you said yes!</p>
+            <p>I cannot wait to spend this special Valentine's Day with you and create beautiful memories together!</p>
+            <p>Thank you for making this the most wonderful day of my life!</p>
+            <button class="restart-btn" onclick="startGame()" style="margin-top: 30px;">Play Memory Game</button>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const celebration = document.getElementById('celebration');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const soundToggle = document.getElementById('soundToggle');
+        let scale = 1;
+        let noClickCount = 0;
+        let isMusicPlaying = false;
+
+        // Set default volume (50%)
+        backgroundMusic.volume = 0.5;
+
+        // Sound Toggle Functionality
+        function toggleSound() {
+            if (isMusicPlaying) {
+                backgroundMusic.pause();
+                soundToggle.textContent = '🔇';
+                soundToggle.classList.add('muted');
+                isMusicPlaying = false;
+            } else {
+                backgroundMusic.play().then(() => {
+                    soundToggle.textContent = '🔊';
+                    soundToggle.classList.remove('muted');
+                    isMusicPlaying = true;
+                }).catch(e => {
+                    console.log('Audio play failed:', e);
+                    // If autoplay is blocked, show muted state
+                    soundToggle.textContent = '🔇';
+                    soundToggle.classList.add('muted');
+                });
+            }
+        }
+
+        // Function to start music (only called on page load)
+        function startMusic() {
+            // Ensure audio is loaded
+            if (backgroundMusic.readyState >= 2) {
+                // Audio is loaded, try to play
+                backgroundMusic.play().then(() => {
+                    soundToggle.textContent = '🔊';
+                    soundToggle.classList.remove('muted');
+                    isMusicPlaying = true;
+                }).catch(e => {
+                    // Autoplay was blocked
+                    soundToggle.textContent = '🔇';
+                    soundToggle.classList.add('muted');
+                    isMusicPlaying = false;
+                });
+            } else {
+                // Wait for audio to load
+                backgroundMusic.addEventListener('canplaythrough', function() {
+                    backgroundMusic.play().then(() => {
+                        soundToggle.textContent = '🔊';
+                        soundToggle.classList.remove('muted');
+                        isMusicPlaying = true;
+                    }).catch(e => {
+                        soundToggle.textContent = '🔇';
+                        soundToggle.classList.add('muted');
+                        isMusicPlaying = false;
+                    });
+                }, { once: true });
+            }
+        }
+
+        // Try to start music immediately
+        startMusic();
+
+        // Also try when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                if (!isMusicPlaying) {
+                    startMusic();
+                }
+            });
+        }
+
+        // Also try on window load
+        window.addEventListener('load', function() {
+            if (!isMusicPlaying) {
+                startMusic();
+            }
+        });
+
+        // Initialize sound toggle button (only toggles, doesn't auto-play)
+        soundToggle.addEventListener('click', toggleSound);
+
+        // Different reasons for clicking No
+        const noReasons = [
+            'No',
+            'Maybe later?',
+            'I need to think...',
+            'Are you sure?',
+            'Hmm, not sure...',
+            'Really?',
+            'Think again!',
+            'Are you positive?',
+            'One more time?',
+            'Last chance!',
+            'Please?',
+            'Pretty please?',
+            'You sure?',
+            'Think about it!'
+        ];
+
+        // Create sparkles for shining background
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle-bg';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            sparkle.style.animationDuration = (1 + Math.random() * 2) + 's';
+            
+            // Random size variation
+            const size = 3 + Math.random() * 4;
+            sparkle.style.width = size + 'px';
+            sparkle.style.height = size + 'px';
+            
+            document.getElementById('sparkles-container').appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+
+        // Create sparkles periodically
+        setInterval(createSparkle, 200);
+        
+        // Create initial sparkles
+        for (let i = 0; i < 30; i++) {
+            setTimeout(() => createSparkle(), i * 100);
+        }
+
+        // Chain text animation for title
+        function createChainText() {
+            const titleText = "Will You Be My Valentine?";
+            const titleElement = document.getElementById('chainTitle');
+            const letters = titleText.split('');
+            
+            letters.forEach((letter, index) => {
+                const span = document.createElement('span');
+                span.textContent = letter === ' ' ? '\u00A0' : letter;
+                span.style.animationDelay = `${index * 0.05}s`;
+                titleElement.appendChild(span);
+            });
+        }
+
+        // Initialize chain text on page load
+        createChainText();
+
+        // Create multiple moving background images
+        function createBackgroundImages() {
+            const container = document.getElementById('bg-images-container');
+            const images = ['8.png', '9.png'];
+            const numImages = 20; // Number of images to create
+            
+            for (let i = 0; i < numImages; i++) {
+                const img = document.createElement('div');
+                img.className = 'bg-image';
+                
+                // Randomly choose between 8.png and 9.png
+                const imageSrc = images[Math.floor(Math.random() * images.length)];
+                img.style.backgroundImage = `url('${imageSrc}')`;
+                
+                // Random starting position
+                img.style.left = Math.random() * 100 + '%';
+                img.style.top = Math.random() * 100 + '%';
+                
+                // Random animation duration (15-30 seconds)
+                const duration = 15 + Math.random() * 15;
+                img.style.animation = `moveImage ${duration}s ease-in-out infinite`;
+                
+                // Random animation delay
+                img.style.animationDelay = Math.random() * 5 + 's';
+                
+                // Alternate between normal and reverse animation
+                if (i % 2 === 0) {
+                    img.style.animationName = 'moveImage';
+                } else {
+                    img.style.animationName = 'moveImageReverse';
+                }
+                
+                // Random size variation
+                const size = 100 + Math.random() * 100; // 100px to 200px
+                img.style.width = size + 'px';
+                img.style.height = size + 'px';
+                
+                container.appendChild(img);
+            }
+        }
+
+        // Initialize background images on page load
+        createBackgroundImages();
+
+        // Card Matching Game
+        const cardSymbols = ['💕', '💖', '💗', '💓', '💝', '💘', '🌹', '💐'];
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moveCount = 0;
+        let canFlip = true;
+
+        function initializeGame() {
+            const gameContainer = document.getElementById('gameContainer');
+            const cardGrid = document.getElementById('cardGrid');
+            cardGrid.innerHTML = '';
+            
+            // Create pairs of cards
+            cards = [...cardSymbols, ...cardSymbols];
+            // Shuffle cards
+            cards = cards.sort(() => Math.random() - 0.5);
+            
+            matchedPairs = 0;
+            moveCount = 0;
+            flippedCards = [];
+            canFlip = true;
+            
+            updateStats();
+            
+            // Create card elements
+            cards.forEach((symbol, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.index = index;
+                card.dataset.symbol = symbol;
+                
+                card.innerHTML = `
+                    <div class="card-inner">
+                        <div class="card-front">?</div>
+                        <div class="card-back">${symbol}</div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => flipCard(card));
+                cardGrid.appendChild(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (!canFlip || card.classList.contains('flipped') || card.classList.contains('matched')) {
+                return;
+            }
+            
+            card.classList.add('flipped');
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+                canFlip = false;
+                moveCount++;
+                updateStats();
+                
+                const [card1, card2] = flippedCards;
+                
+                if (card1.dataset.symbol === card2.dataset.symbol) {
+                    // Match found
+                    setTimeout(() => {
+                        card1.classList.add('matched');
+                        card2.classList.add('matched');
+                        matchedPairs++;
+                        flippedCards = [];
+                        canFlip = true;
+                        updateStats();
+                        
+                        if (matchedPairs === cardSymbols.length) {
+                            // Game complete
+                            setTimeout(() => {
+                                const gameComplete = document.getElementById('gameComplete');
+                                const catVideo = document.getElementById('catVideo');
+                                const cardGrid = document.getElementById('cardGrid');
+                                const gameHeader = document.querySelector('.game-header');
+                                
+                                // Hide game elements
+                                if (cardGrid) cardGrid.style.display = 'none';
+                                if (gameHeader) gameHeader.style.display = 'none';
+                                
+                                // Show completion screen with video
+                                gameComplete.classList.add('show');
+                                
+                                // Play the video
+                                if (catVideo) {
+                                    catVideo.currentTime = 0;
+                                    catVideo.play().catch(e => {
+                                        console.log('Video autoplay prevented:', e);
+                                    });
+                                }
+                            }, 500);
+                        }
+                    }, 500);
+                } else {
+                    // No match
+                    setTimeout(() => {
+                        card1.classList.remove('flipped');
+                        card2.classList.remove('flipped');
+                        flippedCards = [];
+                        canFlip = true;
+                    }, 1000);
+                }
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('moveCount').textContent = moveCount;
+            document.getElementById('matchCount').textContent = matchedPairs;
+        }
+
+        function restartGame() {
+            const gameComplete = document.getElementById('gameComplete');
+            const catVideo = document.getElementById('catVideo');
+            const cardGrid = document.getElementById('cardGrid');
+            const gameHeader = document.querySelector('.game-header');
+            
+            gameComplete.classList.remove('show');
+            
+            // Show game elements again
+            if (cardGrid) cardGrid.style.display = 'grid';
+            if (gameHeader) gameHeader.style.display = 'block';
+            
+            // Reset and pause video
+            if (catVideo) {
+                catVideo.pause();
+                catVideo.currentTime = 0;
+            }
+            
+            initializeGame();
+        }
+
+        function startGame() {
+            document.body.classList.remove('celebration-active');
+            celebration.classList.remove('show');
+            document.body.classList.add('game-active');
+            document.getElementById('gameContainer').classList.add('show');
+            initializeGame();
+        }
+
+        // Yes button click
+        yesBtn.addEventListener('click', function() {
+            document.body.classList.add('celebration-active');
+            celebration.classList.add('show');
+            createSparkles();
+            
+            // Play celebration animation
+            setTimeout(() => {
+                yesBtn.style.transform = 'scale(1.2)';
+            }, 100);
+        });
+
+        // No button click - make Yes button bigger and change No button text
+        noBtn.addEventListener('click', function() {
+            noClickCount++;
+            scale += 0.4; // Make Yes button bigger each time
+            
+            // Update the scale and grow Yes button
+            yesBtn.style.setProperty('--scale', scale);
+            yesBtn.classList.add('growing');
+            
+            // Change No button text to different reason
+            const reasonIndex = Math.min(noClickCount - 1, noReasons.length - 1);
+            noBtn.textContent = noReasons[reasonIndex];
+            
+            // Add a subtle shake animation to No button
+            noBtn.style.animation = 'shake 0.5s ease';
+            setTimeout(() => {
+                noBtn.style.animation = '';
+            }, 500);
+            
+            // Remove growing class after animation
+            setTimeout(() => {
+                yesBtn.classList.remove('growing');
+                yesBtn.style.transform = `scale(${scale})`;
+            }, 500);
+        });
+
+        // Create sparkles for celebration
+        function createSparkles() {
+            // Create initial burst of sparkles
+            for (let i = 0; i < 100; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 1 + 's';
+                sparkle.style.animationDuration = (1 + Math.random() * 2) + 's';
+                celebration.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 3000);
+            }
+            
+            // Create continuous celebration sparkles
+            createCelebrationSparkles();
+        }
+
+        // Create continuous sparkles around celebration content
+        function createCelebrationSparkles() {
+            const interval = setInterval(() => {
+                if (!celebration.classList.contains('show')) {
+                    clearInterval(interval);
+                    return;
+                }
+                
+                for (let i = 0; i < 5; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'celebration-sparkle';
+                    
+                    // Position sparkles around the celebration content area
+                    const centerX = window.innerWidth / 2;
+                    const centerY = window.innerHeight / 2;
+                    const radius = 200 + Math.random() * 300;
+                    const angle = Math.random() * Math.PI * 2;
+                    
+                    sparkle.style.left = (centerX + Math.cos(angle) * radius) + 'px';
+                    sparkle.style.top = (centerY + Math.sin(angle) * radius) + 'px';
+                    sparkle.style.animationDelay = Math.random() * 2 + 's';
+                    sparkle.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+                    
+                    // Random size
+                    const size = 6 + Math.random() * 8;
+                    sparkle.style.width = size + 'px';
+                    sparkle.style.height = size + 'px';
+                    
+                    celebration.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 3000);
+                }
+            }, 300);
+        }
+    </script>
+</body>
+</html>
