@@ -30,6 +30,13 @@
 
         @media (max-width: 768px) {
             body {
+                animation: none;
+                background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 50%, #ffb6d9 100%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
                 overflow-x: hidden;
             }
         }
@@ -115,6 +122,8 @@
             box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.8),
                         0 0 12px 4px rgba(255, 255, 255, 0.6);
             animation: sparkleTwinkle 2s ease-in-out infinite;
+            will-change: transform, opacity;
+            transform: translateZ(0);
         }
 
         @keyframes sparkleTwinkle {
@@ -128,23 +137,25 @@
             }
         }
 
-        /* Shimmer effect overlay */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent
-            );
-            animation: shimmer 3s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 3;
+        /* Shimmer effect overlay - disabled on mobile for performance */
+        @media (min-width: 769px) {
+            body::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent
+                );
+                animation: shimmer 3s ease-in-out infinite;
+                pointer-events: none;
+                z-index: 3;
+            }
         }
 
         @keyframes shimmer {
@@ -433,6 +444,14 @@
             animation: rainbowShimmer 8s ease infinite;
             pointer-events: none;
             z-index: 1000;
+            will-change: background-position;
+        }
+
+        @media (max-width: 768px) {
+            .celebration::before {
+                animation: none;
+                background: rgba(0, 0, 0, 0.9);
+            }
         }
 
         @keyframes rainbowShimmer {
@@ -532,6 +551,8 @@
             display: inline-block;
             animation: fadeIn 1s ease-in, floatGif 3s ease-in-out infinite;
             position: relative;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         @media (max-width: 768px) {
@@ -567,6 +588,8 @@
             line-height: 1.2;
             animation: pulseGlow 2s ease-in-out infinite, shimmerText 3s ease-in-out infinite;
             position: relative;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         @media (max-width: 768px) {
@@ -574,6 +597,7 @@
                 font-size: 3em;
                 margin-bottom: 20px;
                 letter-spacing: 1px;
+                animation: fadeIn 1s ease-in;
             }
         }
 
@@ -595,6 +619,15 @@
             }
         }
 
+        @media (max-width: 768px) {
+            @keyframes pulseGlow {
+                0%, 100% {
+                    transform: scale(1);
+                    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.5);
+                }
+            }
+        }
+
         @keyframes shimmerText {
             0% {
                 background-position: -200% center;
@@ -613,6 +646,12 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             animation: shimmer 3s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .celebration-content h2::before {
+                display: none;
+            }
         }
 
         @keyframes shimmer {
@@ -638,6 +677,12 @@
             opacity: 0;
             animation: fadeInUp 0.8s ease forwards, textGlow 3s ease-in-out infinite;
             position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .celebration-content p {
+                animation: fadeInUp 0.8s ease forwards;
+            }
         }
 
         @media (max-width: 768px) {
@@ -691,6 +736,14 @@
             }
         }
 
+        @media (max-width: 768px) {
+            @keyframes textGlow {
+                0%, 100% {
+                    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.3);
+                }
+            }
+        }
+
         .sparkle {
             position: absolute;
             width: 10px;
@@ -698,6 +751,8 @@
             background: #ffd700;
             border-radius: 50%;
             animation: sparkle 1s ease-in-out infinite;
+            will-change: transform, opacity;
+            transform: translateZ(0);
         }
 
         @keyframes sparkle {
@@ -948,6 +1003,13 @@
             display: block;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.3);
             animation: fadeIn 1s ease-in, videoGlow 3s ease-in-out infinite;
+            will-change: box-shadow;
+        }
+
+        @media (max-width: 768px) {
+            .celebration-video {
+                animation: fadeIn 1s ease-in;
+            }
         }
 
         @media (max-width: 768px) {
@@ -991,6 +1053,12 @@
             animation: buttonPulse 2s ease-in-out infinite, buttonShine 3s ease-in-out infinite;
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4), 0 0 30px rgba(102, 126, 234, 0.2);
             touch-action: manipulation;
+        }
+
+        @media (max-width: 768px) {
+            .restart-btn {
+                animation: buttonPulse 2s ease-in-out infinite;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1042,6 +1110,12 @@
             animation: buttonShimmer 3s infinite;
         }
 
+        @media (max-width: 768px) {
+            .restart-btn::before {
+                display: none;
+            }
+        }
+
         @keyframes buttonShimmer {
             0% {
                 left: -100%;
@@ -1067,6 +1141,8 @@
             z-index: 1001;
             box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.8), 0 0 20px 4px rgba(255, 215, 0, 0.4);
             animation: celebrationSparkle 2s ease-in-out infinite;
+            will-change: transform, opacity;
+            transform: translateZ(0);
         }
 
         @keyframes celebrationSparkle {
@@ -1080,14 +1156,18 @@
             }
         }
 
-        /* Rotating sparkles around GIF */
-        .celebration-gif::before,
-        .celebration-gif::after {
-            content: '✨';
-            position: absolute;
-            font-size: 2em;
-            animation: rotateAround 4s linear infinite;
-            pointer-events: none;
+        /* Rotating sparkles around GIF - disabled on mobile for performance */
+        @media (min-width: 769px) {
+            .celebration-gif::before,
+            .celebration-gif::after {
+                content: '✨';
+                position: absolute;
+                font-size: 2em;
+                animation: rotateAround 4s linear infinite;
+                pointer-events: none;
+                will-change: transform;
+                transform: translateZ(0);
+            }
         }
 
         .celebration-gif::before {
@@ -1367,12 +1447,16 @@
             }, 3000);
         }
 
-        // Create sparkles periodically
-        setInterval(createSparkle, 200);
+        // Create sparkles periodically (reduced on mobile)
+        const sparkleInterval = isMobile ? 500 : 200;
+        const initialSparkleCount = isMobile ? 15 : 30;
+        const sparkleDelay = isMobile ? 200 : 100;
+        
+        setInterval(createSparkle, sparkleInterval);
         
         // Create initial sparkles
-        for (let i = 0; i < 30; i++) {
-            setTimeout(() => createSparkle(), i * 100);
+        for (let i = 0; i < initialSparkleCount; i++) {
+            setTimeout(() => createSparkle(), i * sparkleDelay);
         }
 
         // Chain text animation for title
@@ -1396,7 +1480,8 @@
         function createBackgroundImages() {
             const container = document.getElementById('bg-images-container');
             const images = ['8.png', '9.png'];
-            const numImages = 20; // Number of images to create
+            // Reduce background images on mobile for better performance
+            const numImages = isMobile ? 10 : 20;
             
             for (let i = 0; i < numImages; i++) {
                 const img = document.createElement('div');
@@ -1571,6 +1656,17 @@
         function startGame() {
             document.body.classList.remove('celebration-active');
             celebration.classList.remove('show');
+            
+            // Clear celebration sparkles
+            if (celebrationSparkleInterval) {
+                clearInterval(celebrationSparkleInterval);
+                celebrationSparkleInterval = null;
+            }
+            
+            // Clear any remaining sparkles
+            const celebrationSparkles = celebration.querySelectorAll('.sparkle, .celebration-sparkle');
+            celebrationSparkles.forEach(sparkle => sparkle.remove());
+            
             document.body.classList.add('game-active');
             document.getElementById('gameContainer').classList.add('show');
             initializeGame();
@@ -1578,9 +1674,25 @@
 
         // Yes button click
         yesBtn.addEventListener('click', function() {
+            // Stop background sparkles to improve performance
+            const sparklesContainer = document.getElementById('sparkles-container');
+            if (sparklesContainer) {
+                sparklesContainer.style.display = 'none';
+            }
+            
+            // Stop background images animation
+            const bgImagesContainer = document.getElementById('bg-images-container');
+            if (bgImagesContainer) {
+                bgImagesContainer.style.display = 'none';
+            }
+            
             document.body.classList.add('celebration-active');
             celebration.classList.add('show');
-            createSparkles();
+            
+            // Use requestAnimationFrame for smoother animation
+            requestAnimationFrame(() => {
+                createSparkles();
+            });
             
             // Play celebration animation
             setTimeout(() => {
@@ -1614,36 +1726,56 @@
             }, 500);
         });
 
+        // Detect mobile device
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
         // Create sparkles for celebration
         function createSparkles() {
+            // Reduce sparkles on mobile for better performance
+            const sparkleCount = isMobile ? 30 : 100;
+            
             // Create initial burst of sparkles
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < sparkleCount; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
                 sparkle.style.left = Math.random() * 100 + '%';
                 sparkle.style.top = Math.random() * 100 + '%';
                 sparkle.style.animationDelay = Math.random() * 1 + 's';
                 sparkle.style.animationDuration = (1 + Math.random() * 2) + 's';
+                sparkle.style.willChange = 'transform, opacity';
                 celebration.appendChild(sparkle);
                 
                 setTimeout(() => {
-                    sparkle.remove();
+                    if (sparkle.parentNode) {
+                        sparkle.remove();
+                    }
                 }, 3000);
             }
             
-            // Create continuous celebration sparkles
+            // Create continuous celebration sparkles (reduced on mobile)
             createCelebrationSparkles();
         }
 
         // Create continuous sparkles around celebration content
+        let celebrationSparkleInterval = null;
         function createCelebrationSparkles() {
-            const interval = setInterval(() => {
+            // Clear any existing interval
+            if (celebrationSparkleInterval) {
+                clearInterval(celebrationSparkleInterval);
+            }
+            
+            // Reduce frequency and count on mobile
+            const intervalTime = isMobile ? 800 : 300;
+            const sparkleCount = isMobile ? 2 : 5;
+            
+            celebrationSparkleInterval = setInterval(() => {
                 if (!celebration.classList.contains('show')) {
-                    clearInterval(interval);
+                    clearInterval(celebrationSparkleInterval);
+                    celebrationSparkleInterval = null;
                     return;
                 }
                 
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < sparkleCount; i++) {
                     const sparkle = document.createElement('div');
                     sparkle.className = 'celebration-sparkle';
                     
@@ -1657,19 +1789,22 @@
                     sparkle.style.top = (centerY + Math.sin(angle) * radius) + 'px';
                     sparkle.style.animationDelay = Math.random() * 2 + 's';
                     sparkle.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+                    sparkle.style.willChange = 'transform, opacity';
                     
-                    // Random size
-                    const size = 6 + Math.random() * 8;
+                    // Random size (smaller on mobile)
+                    const size = isMobile ? (4 + Math.random() * 4) : (6 + Math.random() * 8);
                     sparkle.style.width = size + 'px';
                     sparkle.style.height = size + 'px';
                     
                     celebration.appendChild(sparkle);
                     
                     setTimeout(() => {
-                        sparkle.remove();
+                        if (sparkle.parentNode) {
+                            sparkle.remove();
+                        }
                     }, 3000);
                 }
-            }, 300);
+            }, intervalTime);
         }
     </script>
 </body>
